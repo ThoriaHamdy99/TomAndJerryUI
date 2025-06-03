@@ -25,9 +25,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
@@ -35,6 +35,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tomandjerry.R
@@ -44,7 +45,6 @@ import com.example.tomandjerry.ui.theme.CardDetailsColor
 import com.example.tomandjerry.ui.theme.DescriptionColor
 import com.example.tomandjerry.ui.theme.IBMPlexSansArabicFont
 import com.example.tomandjerry.ui.theme.MainBackgroundColor
-import com.example.tomandjerry.ui.theme.PriceCardColor
 import com.example.tomandjerry.ui.theme.StepColor
 import com.example.tomandjerry.ui.theme.TitleColor
 import com.example.tomandjerry.ui.theme.TomCardBackGround
@@ -238,7 +238,7 @@ fun TomKitchen() {
                     .fillMaxWidth()
                     .height(86.dp)
                     .background(TomCardBackGround)
-                    .border(width = 1.dp, color = TitleColor.copy(0.12f))
+                    .topBorder(TitleColor.copy(0.12f), 1.dp)
                     .padding(top = 1.dp)
                     .padding(horizontal = 16.dp, vertical = 15.dp)
                     .clip(RoundedCornerShape(16.dp))
@@ -451,3 +451,19 @@ fun DetailsItem(
 fun TomKitchenPreview() {
     TomKitchen()
 }
+
+
+fun Modifier.topBorder(
+    color: Color,
+    strokeWidth: Dp = 1.dp
+): Modifier = this.then(
+    Modifier.drawBehind {
+        val strokeWidthPx = strokeWidth.toPx()
+        drawLine(
+            color = color,
+            start = androidx.compose.ui.geometry.Offset(0f, 0f),
+            end = androidx.compose.ui.geometry.Offset(size.width, 0f),
+            strokeWidth = strokeWidthPx
+        )
+    }
+)
