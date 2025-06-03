@@ -217,8 +217,8 @@ fun AdvertisingView() {
         )
         Column(
             modifier = Modifier
+                .fillMaxSize()
                 .padding(top = 28.dp, start = 12.dp, bottom = 16.dp)
-                .fillMaxWidth()
         ) {
             Text(
                 text = "Buy 1 Tom and get 2 for free",
@@ -226,6 +226,7 @@ fun AdvertisingView() {
                 fontWeight = FontWeight.SemiBold,
                 color = TomCardBackGround,
                 fontSize = 16.sp,
+                overflow = TextOverflow.Ellipsis
             )
             Spacer(Modifier.size(8.dp))
             Row {
@@ -234,8 +235,9 @@ fun AdvertisingView() {
                     fontFamily = IBMPlexSansFont,
                     fontWeight = FontWeight.Normal,
                     color = TomCardBackGround,
-                    modifier = Modifier.weight(1F),
-                    fontSize = 12.sp
+                    modifier = Modifier.weight(2F),
+                    fontSize = 12.sp,
+                    overflow = TextOverflow.Ellipsis
                 )
                 Box(modifier = Modifier.weight(1F))
             }
