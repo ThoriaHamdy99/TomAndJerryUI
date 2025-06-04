@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,24 +43,43 @@ import com.example.tomandjerry.ui.theme.TomCardBackGround
 
 @Composable
 fun TomAccount() {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(TomCardBackGround)
+            .background(MainBackgroundColor)
     ) {
-        Image(
-            painter = painterResource(R.drawable.tom_account_background),
-            contentDescription = "background image",
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.TopStart),
-            contentScale = ContentScale.FillWidth
+                .weight(1f)
+                .verticalScroll(rememberScrollState())
+        ) {
+            Image(
+                painter = painterResource(R.drawable.tom_account_background),
+                contentDescription = "background image",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.TopStart),
+                contentScale = ContentScale.FillWidth
+            )
+            Header(
+                Modifier
+                    .align(Alignment.TopCenter)
+            )
+            AccountDetails()
+        }
+        Text(
+            text = "v.TomBeta",
+            fontFamily = IBMPlexSansArabicFont,
+            fontWeight = FontWeight.Normal,
+            fontSize = 12.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 24.dp, top = 12.dp, start = 8.dp, end = 8.dp),
+            color = DescriptionColor.copy(0.6f),
+            textAlign = TextAlign.Center
         )
-        Header(
-            Modifier
-                .align(Alignment.TopCenter)
-        )
-        AccountDetails()
+
     }
 }
 
