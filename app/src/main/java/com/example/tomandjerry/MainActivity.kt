@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.example.tomandjerry.screens.JerryStore
+import com.example.tomandjerry.screens.TomAccount
 import com.example.tomandjerry.screens.TomKitchen
 
 class MainActivity : ComponentActivity() {
@@ -25,8 +26,7 @@ class MainActivity : ComponentActivity() {
                             .padding(innerPadding)
                             .fillMaxSize()
                     ) {
-                        //JerryStore()
-                        TomKitchen()
+                        TomAccount()
                     }
                 }
             )
